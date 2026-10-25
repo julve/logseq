@@ -297,6 +297,13 @@ html[data-theme="dark"] {
    own value.
    ========================================================================== */
 
+/* Logseq DB paints the root independently of the body/token layers. */
+html[data-theme="dark"][data-color],
+html[data-theme="dark"] body {
+  background-color: var(--dracula-bg);
+  color: var(--dracula-fg);
+}
+
 /* ---- 3.1 Base typography & inline markup -------------------------------- */
 
 html[data-theme="dark"],
@@ -420,9 +427,9 @@ html[data-theme="dark"] :is(.canceled, .cancelled, .done) {
   text-decoration: none;
 }
 
-/* Priority tag styling — the letter is hidden and redrawn as a coloured
-   badge through ::before. */
-html[data-theme="dark"] .priority {
+/* Only legacy A/B/C links are replaced with generated badges. DB priority
+   properties use icons and editable labels rather than these page URLs. */
+html[data-theme="dark"] a.priority:is([href="#/page/A"], [href="#/page/B"], [href="#/page/C"]) {
   color: var(--ls-tag-text-color);
   opacity: 1 !important;
   font-size: 0px; /* Hide text */
@@ -459,6 +466,20 @@ html[data-theme="dark"] a.priority:before {
 
 html[data-theme="dark"] a.tooltip-priority {
   color: var(--ls-tag-text-color);
+}
+
+/* DB priority values use named icons, not the legacy A/B/C page links.
+   Match the property containers used by Logseq's property.css. */
+html[data-theme="dark"] :is(.positioned-properties, .property-value-inner, .ls-icon-color-wrap) .ls-icon-priorityLvlUrgent {
+  color: var(--dracula-red);
+}
+
+html[data-theme="dark"] :is(.positioned-properties, .property-value-inner, .ls-icon-color-wrap) .ls-icon-priorityLvlMedium {
+  color: var(--dracula-yellow);
+}
+
+html[data-theme="dark"] :is(.positioned-properties, .property-value-inner, .ls-icon-color-wrap) .ls-icon-priorityLvlLow {
+  color: var(--dracula-green);
 }
 
 /* ---- 3.5 App chrome: icons, sidebar, menus ------------------------------- */
@@ -501,12 +522,16 @@ html[data-theme="dark"] .dropdown-wrapper {
 html[data-theme="dark"][data-color] div[data-radix-menu-content],
 html[data-theme="dark"][data-color] div[data-radix-popper-content-wrapper],
 html[data-theme="dark"][data-color] .ui__dropdown-menu-content,
+html[data-theme="dark"][data-color] .ui__dropdown-menu-sub-content,
+html[data-theme="dark"][data-color] .ui__context-menu-sub-content,
+html[data-theme="dark"][data-color] .ui__popover-content,
 html[data-theme="dark"][data-color] .ui__context-menu-content,
 html[data-theme="dark"][data-color] .ui__select-content,
 html[data-theme="dark"][data-color] .ui__calendar {
   --accent: 229 12% 26%; /* --lx-gray-04, #3b3e4b */
   --accent-foreground: 60 30% 96%;
   --muted: 231 10% 29%; /* --lx-gray-05, matching shui.css:39 */
+  --secondary-foreground: 60 30% 96%;
 }
 
 /* Outline buttons sit one step darker than menus in Logseq's own scale

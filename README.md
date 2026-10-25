@@ -37,3 +37,16 @@ This theme is maintained by the following person(s) and a bunch of [awesome cont
 ## License
 
 [MIT License](./LICENSE)
+
+## Logseq DB
+
+Use dark mode and load this checkout's `custom.css` through Logseq's custom
+CSS editor (Settings → General → Edit custom.css). Paste the CSS contents,
+then reload Logseq. DB graphs do not require a filesystem `logseq/` folder.
+If your build supports loading unpacked themes, select this checkout and
+choose **Dracula theme** instead.
+
+The theme includes DB semantic colors, property priority icons, menus and
+popovers, while retaining the legacy file-graph colors. Light mode keeps
+Logseq's own colors. The CDN instructions above load the published upstream
+version; they do not include local changes until those changes are published.
